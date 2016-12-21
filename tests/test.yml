@@ -3,5 +3,5 @@
   remote_user: root
   become: no
   roles:
-    - ansible-role-example
+    - role: ansible-role-example
       ldap_organization: 'Example org, LLC.'
