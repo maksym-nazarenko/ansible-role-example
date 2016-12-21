@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
   remote_user: root
-  become: yes
+  become: no
   roles:
     - ansible-role-example
