@@ -27,7 +27,7 @@ dn: olcDatabase={1}hdb,cn=config
 changetype: modify
 add: olcAccess
 olcAccess: to attrs=userPassword by * self write by anonymous auth by users auth by * none
-olcAccess: to * self write by users read
+olcAccess: to * by self write by users read
 olcAccess: to * by * none
 EOF
 
