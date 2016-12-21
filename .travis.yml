@@ -28,7 +28,10 @@ addons:
     - python-pip
     - ldap-utils
 
-before_install: []
+before_install:
+  - ls -la
+  - sudo dpkg -l | grep slapd
+  - ldapsearch -Y EXTERNAL -H ldapi:/// -b'dc=domain,dc=local' -LLL || true
 
 install:
   # Install ansible
