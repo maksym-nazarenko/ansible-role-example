@@ -1,0 +1,4 @@
+---
+# vars file for ansible-role-skeleton
+
+# test_var: "default in vars"

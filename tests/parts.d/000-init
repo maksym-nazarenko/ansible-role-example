@@ -1,0 +1,53 @@
+#!/bin/bash
+
+
+# all privileges to root
+cat <<EOF| ldapmodify -Y EXTERNAL -H ldapi:///
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+replace: olcRootDN
+olcRootDN: cn=admin,cn=config
+-
+replace: olcRootPW
+olcRootPW: $SLAPD_PASSWORD_HASH
+
+dn: olcDatabase={0}config,cn=config
+changetype: modify
+add: olcAccess
+olcAccess: to dn.base="" by * read
+olcAccess: to dn.base="cn=Subschema" by * read
+olcAccess: to * by * none
+
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+replace: olcAccess
+olcAccess: to * by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth manage by * break
+
+dn: olcDatabase={1}hdb,cn=config
+changetype: modify
+add: olcAccess
+olcAccess: to attrs=userPassword by * self write by anonymous auth by users auth by * none
+olcAccess: to * self write by users read
+olcAccess: to * by * none
+EOF
+
+# create top organization DC object
+cat <<EOF | ldapadd -Y EXTERNAL -H ldapi:///
+dn: $SLAPD_DOMAIN_DC_FORMAT
+objectClass: organization
+objectClass: dcObject
+objectClass: top
+dc: $SLAPD_DOMAIN_NAME
+description: $SLAPD_DOMAIN_NAME
+o: $SLAPD_ORGANIZATION
+EOF
+
+# cn=admin user for managing the primary DB
+cat <<EOF| ldapadd -Y EXTERNAL -H ldapi:///
+dn: cn=admin,$SLAPD_DOMAIN_DC_FORMAT
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+cn: admin
+userPassword: $SLAPD_PASSWORD_HASH
+description: LDAP administrator
+EOF

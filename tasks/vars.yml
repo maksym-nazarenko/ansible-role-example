@@ -1,0 +1,17 @@
+---
+
+- name: Including OS family vars
+  include_vars: "{{ ansible_os_family|lower }}.yml"
+
+# try to include vars from more secific to less specific
+# like:
+#   ubuntu_16.04.yml -> ubuntu_16.yml -> ubuntu.yml
+#   centos_7.yml -> centos.yml
+
+- name: Including OS version specific vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+      - "{{ ansible_distribution|lower }}_{{ ansible_distribution_version }}.yml"
+      - "{{ ansible_distribution|lower }}_{{ ansible_distribution_major_version }}.yml"
+      skip: true

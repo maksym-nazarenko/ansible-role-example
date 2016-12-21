@@ -1,0 +1,6 @@
+---
+# debian vars
+
+ldap_package: 'slapd'
+ldap_service: '{{ ldap_package }}'
+ldap_etc_dir: '/etc/ldap'

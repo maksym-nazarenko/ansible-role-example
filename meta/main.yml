@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Maxim Nazarenko <maxim.nazarenko@onix-systems.com>
+  description: Insatall OpenLDAP
+  company: Onix Systems
+  license: MIT
+  min_ansible_version: 1.8
+  github_branch: master
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  - name: Debian
+    versions:
+    - jessie
+  galaxy_tags:
+  - test
+  - example
+  - ldap
+  - openldap
+dependencies: []

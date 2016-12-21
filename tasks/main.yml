@@ -1,0 +1,10 @@
+---
+# tasks file for ansible-role-skeleton
+
+- name: Including vars
+  include: vars.yml
+  tags:
+    - always
+
+- name: Installing OpenLDAP
+  include: 'install.{{ ansible_os_family|lower }}.yml'
