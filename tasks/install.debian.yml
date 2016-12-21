@@ -1,5 +1,17 @@
 ---
 
+- name: Configure debconf
+  debconf:
+    name: "{{ ldap_package }}"
+    question: "{{ item.question }}"
+    vtype: "{{ item.vtype }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { "question": "{{ openldap_package_name }}/backend", "vtype": "select", value: "HDB" }
+    - { "question": "{{ openldap_package_name }}/domain", "vtype": "text", value: "{{ openldap_domain }}" }
+    - { "question": "shared/organization", "vtype": "text", value: "{{ openldap_organization }}" }
+  changed_when: false
+
 - name: Install OpenLDAP package
   apt:
     name: '{{ ldap_package }}'

@@ -11,9 +11,14 @@ This role is a standalone role.
 Role Variables
 --------------
 
-LDAP_VAR1:
-  Dummy variable
+ldap_domain:
+  LDAP doamin to be used as primaty domain
+  Example: domain.local
 
+
+  ldap_organization:
+    The organization name
+    Example: "My org, Inc."
 
 Example Playbook
 ----------------
@@ -23,6 +28,8 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: ldap-servers
       roles:
          - role: ansible-role-example
+           ldap_domain: 'example.com'
+           ldap_organization: 'Example org, LLC.'
 
 License
 -------
