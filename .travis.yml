@@ -26,6 +26,7 @@ addons:
   apt:
     packages:
     - python-pip
+    - ldap-utils
 
 before_install: []
 
