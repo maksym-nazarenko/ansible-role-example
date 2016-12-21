@@ -31,23 +31,10 @@ olcAccess: to * self write by users read
 olcAccess: to * by * none
 EOF
 
-# create top organization DC object
-cat <<EOF | ldapadd -Y EXTERNAL -H ldapi:///
-dn: $SLAPD_DOMAIN_DC_FORMAT
-objectClass: organization
-objectClass: dcObject
-objectClass: top
-dc: $SLAPD_DOMAIN_NAME
-description: $SLAPD_DOMAIN_NAME
-o: $SLAPD_ORGANIZATION
-EOF
-
 # cn=admin user for managing the primary DB
-cat <<EOF| ldapadd -Y EXTERNAL -H ldapi:///
+cat <<EOF| ldapmodify -Y EXTERNAL -H ldapi:///
 dn: cn=admin,$SLAPD_DOMAIN_DC_FORMAT
-objectClass: organizationalRole
-objectClass: simpleSecurityObject
-cn: admin
+changetype: modify
+replace: userPassword
 userPassword: $SLAPD_PASSWORD_HASH
-description: LDAP administrator
 EOF
