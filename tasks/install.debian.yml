@@ -7,9 +7,9 @@
     vtype: "{{ item.vtype }}"
     value: "{{ item.value }}"
   with_items:
-    - { "question": "{{ openldap_package_name }}/backend", "vtype": "select", value: "HDB" }
-    - { "question": "{{ openldap_package_name }}/domain", "vtype": "text", value: "{{ openldap_domain }}" }
-    - { "question": "shared/organization", "vtype": "text", value: "{{ openldap_organization }}" }
+    - { "question": "{{ ldap_package }}/backend", "vtype": "select", value: "HDB" }
+    - { "question": "{{ ldap_package }}/domain", "vtype": "text", value: "{{ ldap_domain }}" }
+    - { "question": "shared/organization", "vtype": "text", value: "{{ ldap_organization }}" }
   changed_when: false
 
 - name: Install OpenLDAP package
