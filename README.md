@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/maxim-nazarenko/ansible-role-example.svg?branch=master)](https://travis-ci.org/maxim-nazarenko/ansible-role-example)
+
+
 Ansible example role for OpenLDAP server
 ========================================
 
