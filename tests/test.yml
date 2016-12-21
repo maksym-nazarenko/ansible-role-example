@@ -4,3 +4,4 @@
   become: no
   roles:
     - ansible-role-example
+      ldap_organization: 'Example org, LLC.'
