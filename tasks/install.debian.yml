@@ -20,9 +20,4 @@
 
 - name: Test
   debug: var=item
-  with_items:
-    - 1
-    - 2
-    - ldap_package
-    - 3
-    - 4
+  with_items: test_items
