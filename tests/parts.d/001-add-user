@@ -26,13 +26,10 @@ userPassword: $TEST_USER_PASSWORD_HASH
 description: test ldap user
 EOF
 
-
-echo "$TEST_USER_PASSWORD / $TEST_USER_PASSWORD_HASH"
-
 ldapsearch \
     -H ldap:/// \
     -b "$SLAPD_DOMAIN_DC_FORMAT" \
-    -D "uid=1$TEST_USER,$SLAPD_DOMAIN_DC_FORMAT" \
+    -D "uid=$TEST_USER,$SLAPD_DOMAIN_DC_FORMAT" \
     -w"$TEST_USER_PASSWORD" \
     -x \
     -LLL \

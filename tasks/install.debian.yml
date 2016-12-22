@@ -14,6 +14,6 @@
 
 - name: Install OpenLDAP package
   apt:
-    name: '{{ ldap_package }}'
+    name: ldap_package
     state: present
     install_recommends: no
