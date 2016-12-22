@@ -29,24 +29,12 @@ EOF
 
 echo "$TEST_USER_PASSWORD / $TEST_USER_PASSWORD_HASH"
 
-$ldapsearch -b "$SLAPD_DOMAIN_DC_FORMAT" -x -LLL "(objectClass=*)"
-
 ldapsearch \
     -H ldap:/// \
     -b "$SLAPD_DOMAIN_DC_FORMAT" \
-    -D "uid=$TEST_USER,$SLAPD_DOMAIN_DC_FORMAT" \
+    -D "uid=1$TEST_USER,$SLAPD_DOMAIN_DC_FORMAT" \
     -w"$TEST_USER_PASSWORD" \
     -x \
     -LLL \
     "(objectClass=account)" \
-    uid
-
-ldapsearch \
-    -H ldap:/// \
-    -b "$SLAPD_DOMAIN_DC_FORMAT" \
-    -D "uid=$TEST_USER,$SLAPD_DOMAIN_DC_FORMAT" \
-    -w"$TEST_USER_PASSWORD" \
-    -x \
-    -LLL \
-    "(objectClass=account)" \
-    uid | grep -q 'uid: user1'
+    uid | grep 'uid: user1'
