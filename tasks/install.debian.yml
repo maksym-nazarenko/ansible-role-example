@@ -17,7 +17,3 @@
     name: '{{ ldap_package }}'
     state: present
     install_recommends: no
-
-- name: Test
-  debug: var=item
-  with_items: test_items

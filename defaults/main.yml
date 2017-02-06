@@ -2,8 +2,3 @@
 
 ldap_domain: 'domain.local'
 ldap_org: "My Org"
-
-test_items:
-  - 1
-  - 2
-  - 3
