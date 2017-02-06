@@ -2,3 +2,5 @@
 
 ldap_domain: 'domain.local'
 ldap_org: "My Org"
+
+# add TLS support

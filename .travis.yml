@@ -16,10 +16,16 @@ env:
     SLAPD_DOMAIN='domain.local'
     SLAPD_ORGANIZATION='My Org, Inc.'
 
+  - ANSIBLE_VERSION=2.1
+    SLAPD_PASSWORD='pass'
+    SLAPD_DOMAIN='domain.local'
+    SLAPD_ORGANIZATION='My Org, Inc.'
+
   - ANSIBLE_VERSION=2.2
     SLAPD_PASSWORD='pass'
     SLAPD_DOMAIN='domain.local'
     SLAPD_ORGANIZATION='My Org, Inc.'
+
 
 # Install ansible
 addons:
